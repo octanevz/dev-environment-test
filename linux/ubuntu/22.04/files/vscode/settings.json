@@ -1,0 +1,17 @@
+{
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "diffEditor.renderSideBySide": false,
+    "editor.fontSize": 18,
+    "files.trimTrailingWhitespace": true,
+    "git.enableSmartCommit": true,
+    "jupyter.askForKernelRestart": false,
+    "telemetry.telemetryLevel": "error",
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.gpuAcceleration": "off",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true
+}
