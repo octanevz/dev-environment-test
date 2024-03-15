@@ -12,9 +12,9 @@ sudo apt update -y \
   && sudo apt clean -y;
 
 # Install and configure Oh My Zsh
-sudo git clone https://github.com/ohmyzsh/ohmyzsh.git /usr/share/oh-my-zsh;
-sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/oh-my-zsh/custom/plugins/zsh-autosuggestions;
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /usr/share/oh-my-zsh/custom/themes/powerlevel10k;
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # OMZ config for new users
 sudo cp ./files/zsh/.zshrc /etc/skel/.zshrc;
