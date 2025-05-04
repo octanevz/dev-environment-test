@@ -1,29 +1,53 @@
-# SSH keys
-eval `keychain --eval --agents ssh ssh-azure-devops`
-eval `keychain --eval --agents ssh ssh-github`
+# Original work : https://github.com/spences10/dotfiles/blob/main/.zshrc
+# Original work : Copyright (c) 2023 Scott Spence, MIT Licensed
+# See the LICENSE file in the root of this repository for license details.
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# Performance optimizations
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
+
+# Cache completions aggressively
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
 fi
 
+# Oh My Zsh path
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-zstyle ':omz:update' mode disabled
+
+# Theme config
+ZSH_THEME="robbyrussell"
+
+# Carefully ordered plugins (syntax highlighting must be last)
 plugins=(
-    aliases
-    git
-    zsh-autosuggestions
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
+
+# Source Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
-# Aliases
-alias c="clear"
-alias cls="clear"
-alias my="als"
-alias x="exit"
+# Autosuggest settings
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Alias expansion function
+globalias() {
+   if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
+       zle _expand_alias
+       zle expand-word
+   fi
+   zle self-insert
+}
+zle -N globalias
+bindkey " " globalias
+bindkey "^[[Z" magic-space
+bindkey -M isearch " " magic-space
+
+# Source aliases last
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases

@@ -1,0 +1,55 @@
+# Original work : https://github.com/spences10/dotfiles/blob/main/.zsh_aliases
+# Original work : Copyright (c) 2023 Scott Spence, MIT Licensed
+# See the LICENSE file in the root of this repository for license details.
+
+# Aliases to use with Global Alias
+#------------------------------------------------------
+# Automatically Expanding Global Aliases (Space key to expand)
+# references: http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
+# video: https://www.youtube.com/watch?v=WTTIGjZAMGg
+# import this file into the .zshrc fie with '. ~/.zsh_aliases'
+
+# navigation
+alias -g e=exit
+alias -g ls='ls -lart'
+
+# git commands
+alias -g g=git
+alias -g gbl='branch -a'
+alias -g gcl='git clone '
+alias -g pp='git pull --rebase && git push'
+alias -g gpr='git pull-request -b '
+alias -g ga='git add .'
+alias -g gc='git commit -m '
+alias -g gagc='git add . && git commit -m '
+alias -g gbr='git browse'
+alias -g grb='git rebase -'
+alias -g gs='git status'
+alias -g gb='git checkout -b'
+alias -g grc='git rebase --continue'
+alias -g grs='git rebase --skip'
+alias -g grv='git remote -v'
+alias -g gp='git fetch -p'
+alias -g gcom='git checkout main'
+alias -g gcol='git checkout -'
+
+# Hub commands
+alias -g gpr='git pull-request -b '
+alias -g gcr='git create'
+
+# npm commands
+alias -g nr='npm run'
+alias -g nrs='npm run start'
+alias -g ni='npm i'
+alias -g nid='npm i -D'
+alias -g nig='npm i -g'
+alias -g no='npm outdated'
+alias -g nog='npm outdated -g --depth=0'
+alias -g nr='npm run'
+alias -g nrb='npm run build'
+alias -g nrd='npm run dev'
+alias -g nrf='npm run format'
+alias -g nrs='npm run start'
+alias -g nu='npm un'
+alias -g nug='npm -g un'
+alias -g nlg='npm list -g --depth=0'
